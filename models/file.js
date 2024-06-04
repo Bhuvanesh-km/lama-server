@@ -13,6 +13,11 @@ const fileSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  source: {
+    type: String,
+    required: true,
+    enum: ["youtube", "spotify", "rss"],
+  },
 });
 
 const File = mongoose.model("File", fileSchema);

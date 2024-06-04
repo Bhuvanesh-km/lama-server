@@ -101,8 +101,6 @@ const getProjectsByUserId = async (req, res) => {
   }
 };
 
-// const getFilesOfProjectByUserId
-
 module.exports = {
   postUser,
   checkInput,

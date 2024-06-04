@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
+const PORT = process.env.PORT || 3000;
 // Routes
 const userRouter = require("./routes/userRouter");
 const authRouter = require("./routes/authRouter");
@@ -33,6 +33,6 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/project", projectRouter);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
