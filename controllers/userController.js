@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const WidgetModel = require("../models/widgetModel");
 
 const checkInput = (req, res, next) => {
   const userDetails = req.body;
@@ -15,6 +16,10 @@ const postUser = async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();
+    const widgetModel = new WidgetModel({
+      user: user._id,
+    });
+    await widgetModel.save();
     res.status(201).json({
       message: "User created successfully",
       data: user,
