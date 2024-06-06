@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const userRouter = require("./routes/userRouter");
 const authRouter = require("./routes/authRouter");
 const projectRouter = require("./routes/projectRouter");
+const widgetRouter = require("./routes/widgetRouter");
 
 const app = express();
 app.use(express.json());
@@ -32,6 +33,7 @@ mongoose
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/project", projectRouter);
+app.use("/api/widgets", widgetRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
