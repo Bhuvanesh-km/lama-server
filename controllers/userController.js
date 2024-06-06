@@ -1,5 +1,4 @@
 const User = require("../models/userModel");
-const Project = require("../models/projectModel");
 
 const checkInput = (req, res, next) => {
   const userDetails = req.body;
@@ -64,14 +63,18 @@ const getUserById = async (req, res) => {
 const updateUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findByIdAndUpdate(id, req.body);
+    const user = await User.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
     if (!user) {
       return res.status(404).json({
         message: "User not found",
       });
     }
+    await user.save();
     res.status(200).json({
       message: "User updated successfully",
+      data: user,
     });
   } catch (error) {
     res.status(500).json({
